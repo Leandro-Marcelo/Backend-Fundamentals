@@ -168,3 +168,37 @@
  20220511	09:02:26	a8b04db5-25e0-4f6f-87ff-702489ae6fbc	GET	undefined	/static/index.css
  20220511	09:02:26	e61b872f-a692-41bd-b5bc-dc0c53802432	GET	undefined	/static/foto.jpeg
  20220511	09:02:26	e900951a-7412-43ec-bc40-03719c08c8ba	GET	undefined	/favicon.ico
+ 20220511	11:44:47	f0bf2f33-7ac3-4469-a3d8-8cade8b0c11b	GET	undefined	/
+ 20220511	11:45:32	a8b01421-c96b-49b9-b26b-be263ee0b148	GET	undefined	/
+ 20220511	11:45:57	bcb09f9c-f07b-4e66-9bc7-bb0f2ed3386e	GET	undefined	/employees/
+ 20220511	11:46:01	270a5dcd-fd62-433c-a550-f4fb2141a9a2	GET	undefined	/employees
+ 20220511	11:46:02	0afae6a6-5f8e-412c-ae3a-c55cb7dfd1f5	GET	undefined	/employees
+ 20220511	11:46:19	2608d162-8acb-4d01-ae57-f8f61b8d9c27	GET	undefined	/employees
+ 20220511	11:46:33	f87e4fec-bdbc-4fa6-999c-f17ace3dd568	GET	undefined	/employees
+ 20220511	11:46:37	f4cdce95-2594-4a67-9e31-b9a1e5de55ea	GET	undefined	/employees
+ 20220511	11:46:38	252a700a-c7db-4529-bdf5-6e331d019f21	GET	undefined	/employees
+ 20220511	11:46:49	52197974-f270-490e-9e01-ecf12d804980	GET	undefined	/1
+ 20220511	11:47:06	45dd4eb4-4a1d-4bbc-b3f7-2aa90f520bdc	GET	undefined	/employees/1
+ 20220511	11:47:21	386e2856-c4e3-47a7-9f24-bb1fcd198c3f	GET	undefined	/employees/1
+ 20220511	11:47:33	703f1924-43ed-4bda-b7cc-9d987a046e30	POST	undefined	/employees
+ 20220511	11:47:40	5c226a9f-d96b-44a4-beba-cfd82f1e87fd	POST	undefined	/employees
+ 20220511	11:48:02	97607960-59e9-45b1-b877-c589ded6e7ee	POST	undefined	/employees
+ 20220511	11:48:26	ecb82b7e-da0d-4da1-8f02-67ce364b6ab3	POST	undefined	/employees
+ 20220511	11:51:46	aee237e9-6337-42dd-932e-821b9bd373c3	POST	undefined	/employees
+ 20220511	11:52:03	5972d3bb-ac15-44c1-9759-033c73f9762f	POST	undefined	/employees
+ 20220511	11:52:07	ca273815-4bf5-426d-a84c-9c3bd12ee23c	GET	undefined	/employees
+ 20220511	11:53:14	93a6a6e8-bcd0-4fc7-aae2-aeb2aa738b1f	PUT	undefined	/employees
+ 20220511	11:53:28	f230a80b-4c69-4427-9350-4b5fd9d3b3ed	PUT	undefined	/employees
+ 20220511	11:54:09	a557601c-5fe4-42dd-bc0e-344ab527c204	PUT	undefined	/employees
+ 20220511	11:54:26	1e6e8ec9-6d2c-4fd7-831a-10962c455078	PUT	undefined	/employees/3
+ 20220511	11:54:36	07a16dcb-d617-4cad-ab19-db2ec0bbeb81	PUT	undefined	/employees/3
+ 20220511	11:54:41	46171c3f-0a55-4ee1-a125-2ef23b504248	PUT	undefined	/employees/3
+ 20220511	11:55:25	8f47520c-0b74-4828-bc39-c2c2488d9324	PUT	undefined	/employees/3
+ 20220511	11:55:30	4f2ce45f-c0ea-400d-a310-f501c3a0336e	PUT	undefined	/employees
+ 20220511	11:55:35	a668dcc3-12ef-40e6-b307-4d42cc67b9b4	GET	undefined	/employees
+ 20220511	11:55:42	c9ffd8c7-b126-4e2b-aeab-faf5a0f13fb2	POST	undefined	/employees
+ 20220511	11:55:45	71c5b52e-df0a-48eb-8134-96a3da7078db	GET	undefined	/employees
+ 20220511	11:55:48	435900b9-4f8a-488a-9a99-c5328f91f655	PUT	undefined	/employees
+ 20220511	11:56:09	b646f615-6ae0-49f7-a4ae-a412a8c00999	DELETE	undefined	/employees
+ 20220511	11:56:15	4ced1fa7-f12f-4769-b4df-a98703b0cc86	GET	undefined	/employees/1
+ 20220511	11:56:18	63125a6d-f08b-4321-a9f3-360441b55532	GET	undefined	/employees/2

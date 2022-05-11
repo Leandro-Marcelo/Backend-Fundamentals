@@ -3,6 +3,7 @@ const path = require("path");
 const express = require("express");
 const config = require("./config");
 const cors = require("cors");
+const corsOptions = require("./config/corsOptions");
 const session = require("express-session");
 const { logger } = require("./middleware/logEvents");
 const errorHandler = require("./middleware/errorHandler");
@@ -20,31 +21,18 @@ const app = express();
 app.use(logger);
 
 /* Cross Origin Resource Sharing */
-const whitelist = ["https://www.yoursite.com"];
 
-const corsOptions = {
-    origin: (origin, callback) => {
-        /* in mode development, add !origin */
-        if (whitelist.indexOf(origin) !== -1 || !origin) {
-            callback(null, true);
-        } else {
-            callback(new Error("Not allowed by CORS"));
-        }
-    },
-    optionsSuccessStatus: 200,
-};
 app.use(cors(corsOptions));
-
+app.use(express.json());
 //serve static files
 //Middleware para servir archivos estaticos
 app.use("/static", express.static(path.join(__dirname, "static")));
 /* app.use("/", express.static(path.join(__dirname, "static"))); esto es lo mismo que poner app.use(express.static(path.join(__dirname, "static")))  esto quiere decir que si desde /* me manda a 404.html va a utilizar los estilos de statick sin embargo los subdirectorios no podrán, al específicarlo de que los static estarán en /static eso significa que mientras esos archivos esten ahí, todas las routes podrán consumirlas. */
 
-// built-in middleware to handle urlencoded data
-// in other words, form data:
+// built-in middleware to handle urlencoded data form data
 // "content-type: application/x-www-form-urlencoded'
 /* esto es para ver el contenido que llega desde el formulario, ya que si no esta este middleware nos trae puros undefined */
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: false }));
 
 app.use(
     /* generalmente siempre lo pondrán así. Un secret, resave:false, saveUninitialized:false para express session */
@@ -58,22 +46,15 @@ app.use(
     })
 );
 
-app.use("/subdir", require("./routes/subdir"));
-app.use("/employees", require("./routes/api/employees"));
-
 // built-in middleware for json
 app.use(addSessionToTemplate);
 // built-in middleware for json
-app.use(express.json());
-
+app.use("/employees", require("./routes/api/employees"));
 // Sección de codigo para los router
 app.use(users);
 app.use(auth);
 
-/* app.use which is for middleware and does not accept regex and app.all is more for routing and it will apply to all http methods at once */
-app.use(errorHandler);
-
-/* app.all("*", (req, res) => {
+app.all("*", (req, res) => {
     res.status(404);
     if (req.accepts("html")) {
         res.sendFile(path.join(__dirname, "views", "404.html"));
@@ -82,7 +63,10 @@ app.use(errorHandler);
     } else {
         res.type("txt").send("404 Not Found");
     }
-}); */
+});
+
+/* app.use which is for middleware and does not accept regex and app.all is more for routing and it will apply to all http methods at once */
+app.use(errorHandler);
 
 app.listen(config.port, () => {
     console.log("Mode:", process.env.NODE_ENV);
