@@ -1,0 +1,8 @@
+ 20220511	00:39:46	aac2246e-5630-4b6a-ad43-c8382e9b96b3	Error: Not allowed by CORS
+ 20220511	01:17:16	bf57964c-5e41-444f-a5f0-bb948f40f708	Error: ENOENT: no such file or directory, stat 'C:\Users\lmarc\Desktop\proyectos\Backend\Backend-Fundamentals-1\Backend-Fundamentals\views\new-page.html'
+ 20220511	01:21:42	ce228354-3105-4a2e-8ffb-1b9b62182475	Error: ENOENT: no such file or directory, stat 'C:\Users\lmarc\Desktop\proyectos\Backend\Backend-Fundamentals-1\Backend-Fundamentals\routes\views\index.html'
+ 20220511	01:22:38	4a660981-58cd-4db8-b976-bf7be12fcff7	Error: ENOENT: no such file or directory, stat 'C:\Users\lmarc\Desktop\proyectos\Backend\Backend-Fundamentals-1\Backend-Fundamentals\views\new-page.html'
+ 20220511	01:50:39	9bf11234-ccc1-4e0d-ab1d-7951bccdb882	Error: ENOENT: no such file or directory, stat 'C:\Users\lmarc\Desktop\proyectos\Backend\Backend-Fundamentals-1\Backend-Fundamentals\routes\views\404.html'
+ 20220511	01:51:01	1fcc4896-14fb-41c3-90bd-ef0156a1256b	Error: ENOENT: no such file or directory, stat 'C:\Users\lmarc\Desktop\proyectos\Backend\Backend-Fundamentals-1\Backend-Fundamentals\routes\views\404.html'
+ 20220511	01:51:10	c5335a41-cf27-47fc-aebe-614bf24917f5	Error: ENOENT: no such file or directory, stat 'C:\Users\lmarc\Desktop\proyectos\Backend\Backend-Fundamentals-1\Backend-Fundamentals\routes\404.html'
+ 20220511	01:51:10	4d4ae85c-45bb-4725-9b02-1c6ad1424cdc	Error: ENOENT: no such file or directory, stat 'C:\Users\lmarc\Desktop\proyectos\Backend\Backend-Fundamentals-1\Backend-Fundamentals\routes\404.html'
