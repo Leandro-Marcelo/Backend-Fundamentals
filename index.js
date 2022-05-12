@@ -1,38 +1,38 @@
-//Usando modulos nátivos:
+// Importando o requeriendo de modulos nátivos, es decir, modulos que ya viene establecidos en NodeJS
 const path = require("path");
 const express = require("express");
 const config = require("./config");
 const cors = require("cors");
 const corsOptions = require("./config/corsOptions");
 const session = require("express-session");
+const verifyJWT = require("./middleware/verifyJWT");
+const cookieParser = require("cookie-parser");
 const { logger } = require("./middleware/logEvents");
 const errorHandler = require("./middleware/errorHandler");
 const addSessionToTemplate = require("./middleware/addSessionToTemplate");
 
-//Importando router
-const users = require("./routes/users"); // También podemos usar: require("./routes/users.js")
-const auth = require("./routes/auth");
-
 const app = express();
 
-/* ************************************************************ Middleware **************************************/
-
-/* Custom Middleware logger */
+// custom middleware logger
 app.use(logger);
 
-/* Cross Origin Resource Sharing */
-
+// Cross Origin Resource Sharing
 app.use(cors(corsOptions));
-app.use(express.json());
-//serve static files
-//Middleware para servir archivos estaticos
-app.use("/static", express.static(path.join(__dirname, "static")));
-/* app.use("/", express.static(path.join(__dirname, "static"))); esto es lo mismo que poner app.use(express.static(path.join(__dirname, "static")))  esto quiere decir que si desde /* me manda a 404.html va a utilizar los estilos de statick sin embargo los subdirectorios no podrán, al específicarlo de que los static estarán en /static eso significa que mientras esos archivos esten ahí, todas las routes podrán consumirlas. */
 
-// built-in middleware to handle urlencoded data form data
+// built-in middleware to handle urlencoded form data
 // "content-type: application/x-www-form-urlencoded'
 /* esto es para ver el contenido que llega desde el formulario, ya que si no esta este middleware nos trae puros undefined */
 app.use(express.urlencoded({ extended: false }));
+
+// built-in middleware for json
+app.use(express.json());
+
+//middleware for cookies
+app.use(cookieParser());
+
+// Serve static files
+app.use("/static", express.static(path.join(__dirname, "static")));
+/* app.use("/", express.static(path.join(__dirname, "static"))); esto es lo mismo que poner app.use(express.static(path.join(__dirname, "static")))  esto quiere decir que si desde /* me manda a 404.html va a utilizar los estilos de statick sin embargo los subdirectorios no podrán, al específicarlo de que los static estarán en /static eso significa que mientras esos archivos esten ahí, todas las routes podrán consumirlas. */
 
 app.use(
     /* generalmente siempre lo pondrán así. Un secret, resave:false, saveUninitialized:false para express session */
@@ -46,11 +46,24 @@ app.use(
     })
 );
 
-// built-in middleware for json
+// built-in middleware for session
 app.use(addSessionToTemplate);
-// built-in middleware for json
+
+// routes
+app.use("/api/register", require("./routes/api/register"));
+app.use("/api/auth", require("./routes/api/auth"));
+/* el refresh token no puede ir por debajo del verifyJWT porque se supone que no tenemos access_token porque expiró */
+app.use("/api/refresh", require("./routes/api/refresh"));
+app.use("/api/logout", require("./routes/api/logout"));
+
+app.use(verifyJWT);
 app.use("/employees", require("./routes/api/employees"));
-// Sección de codigo para los router
+
+// Importando router
+const users = require("./routes/users");
+const auth = require("./routes/auth");
+
+// Utilizando las rutas
 app.use(users);
 app.use(auth);
 

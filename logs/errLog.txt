@@ -7,3 +7,4 @@
  20220511	01:51:10	c5335a41-cf27-47fc-aebe-614bf24917f5	Error: ENOENT: no such file or directory, stat 'C:\Users\lmarc\Desktop\proyectos\Backend\Backend-Fundamentals-1\Backend-Fundamentals\routes\404.html'
  20220511	01:51:10	4d4ae85c-45bb-4725-9b02-1c6ad1424cdc	Error: ENOENT: no such file or directory, stat 'C:\Users\lmarc\Desktop\proyectos\Backend\Backend-Fundamentals-1\Backend-Fundamentals\routes\404.html'
  20220511	11:49:40	0fde90a0-65fc-4c31-aa5c-ceb3ff39214c	TypeError: Cannot read properties of undefined (reading 'firstname')
+ 20220512	01:00:28	288f7516-eb1a-4163-b981-a38663073651	SyntaxError: Unexpected token } in JSON at position 27
