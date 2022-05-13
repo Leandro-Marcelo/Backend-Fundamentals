@@ -1,13 +1,14 @@
 /* let's have the data object set like this and if you work with react I'm thinking in more of reactful way when I do this */
+
 const data = {
-    employees: require("../models/data.json"),
+    employees: require("../models/employees.json"),
     setEmployees: function (data) {
         this.employees = data;
     },
 };
 
 const getAllEmployees = (req, res) => {
-    res.json(data.employees);
+    return res.json(data.employees);
 };
 
 const createNewEmployee = (req, res) => {

@@ -31,9 +31,15 @@ const handleLogin = async (req, res) => {
     // evaluate password
     const match = await bcrypt.compare(credentialsPwd, foundUser.password);
     if (match) {
-        // create JWTs
+        // create JWTs and roles
+        const roles = Object.values(foundUser.roles);
         const accessToken = jwt.sign(
-            { username: foundUser.username },
+            {
+                userInfo: {
+                    username: foundUser.username,
+                    roles,
+                },
+            },
             access_token_secret,
             { expiresIn: "30s" } // 5 minutes to 15 minutes on production
         );

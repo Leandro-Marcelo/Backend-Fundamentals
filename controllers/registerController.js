@@ -11,9 +11,6 @@ const bcrypt = require("bcrypt");
 const handleNewUser = async (req, res) => {
     const { user: credentialsUser, pwd: credentialsPwd } = req.body;
 
-    console.log(credentialsUser);
-    console.log(credentialsPwd);
-
     if (!credentialsUser || !credentialsPwd)
         return (
             res
@@ -36,7 +33,11 @@ const handleNewUser = async (req, res) => {
         //encrypt the password
         const hashedPwd = await bcrypt.hash(credentialsPwd, 10);
         //store the new user
-        const newUser = { username: credentialsUser, password: hashedPwd };
+        const newUser = {
+            username: credentialsUser,
+            password: hashedPwd,
+            roles: { User: 2001 },
+        };
         usersDB.setUsers([...usersDB.users, newUser]);
         // una vez ya actualiza usersDB, ahora sobreescribe toda esa DB por esta nueva
         await fsPromises.writeFile(
