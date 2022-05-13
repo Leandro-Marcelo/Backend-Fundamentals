@@ -1,11 +1,4 @@
-const usersDB = {
-    users: require("../models/users.json"),
-    setUsers: function (data) {
-        this.users = data;
-    },
-};
-const fsPromises = require("fs").promises;
-const path = require("path");
+const UserModel = require("../models/user");
 
 const handleLogout = async (req, res) => {
     // On client, also delete the accessToken
@@ -15,9 +8,9 @@ const handleLogout = async (req, res) => {
     const refreshToken = cookies.jwt;
 
     // Is refreshToken in db?
-    const foundUser = usersDB.users.find(
-        (user) => user.refreshToken === refreshToken
-    );
+    const foundUser = UserModel.findOne({
+        refreshToken,
+    }).exec();
 
     // Esto es porque puede suceder de que tiene un refreshtoken sin embargo, no esta en la base de datos porque es un refreshtoken de otra aplicación por lo tanto, se la limpio
     // O sea tenia una cookie y llego hasta acá pero como es que puede suceder eso, si mal no recuerdo Tzuzul decía que los backend podían leer tus cookies. En ese caso las cookies se comparten
@@ -32,15 +25,9 @@ const handleLogout = async (req, res) => {
     }
 
     // Delete refreshToken in db
-    const otherUsers = usersDB.users.filter(
-        (user) => user.refreshToken !== foundUser.refreshToken
-    );
-    const currentUser = { ...foundUser, refreshToken: "" };
-    usersDB.setUsers([...otherUsers, currentUser]);
-    await fsPromises.writeFile(
-        path.join(__dirname, "..", "model", "users.json"),
-        JSON.stringify(usersDB.users)
-    );
+    foundUser.refreshToken = "";
+    // if I remember correctly, the advantage of save is that if it does not exist, it creates it and if it does exist, it updates it.
+    const result = await foundUser.save();
 
     // secure: true - only serves on https
     res.clearCookie("jwt", {

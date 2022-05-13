@@ -7,6 +7,7 @@ const verifyJWT = (req, res, next) => {
     /*  console.log(authHeader); */
     // 401 Unauthorized
     // este ?. actuaría como un or, so,first of all if we do have an off header or if it starts with this ("Bearer ")
+
     if (!authHeader?.startsWith("Bearer ")) return res.sendStatus(401);
     /*    console.log(authHeader); // Bearer token */
     const token = authHeader.split(" ")[1];

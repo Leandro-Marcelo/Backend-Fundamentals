@@ -1,1 +1,0 @@
-No ponemos los documentos HTML en static, porque los usuarios podrían acceder a estos documentos sin haber yo definido tal ruta, es decir, colocarían /static/rutaSoloParaLean y podrían acceder, es por eso que van separados static y views en esta arquitectura MVC.

@@ -1,11 +1,5 @@
-const usersDB = {
-    users: require("../models/users.json"),
-    setUsers: function (data) {
-        this.users = data;
-    },
-};
-const fsPromises = require("fs").promises;
-const path = require("path");
+const UserModel = require("../models/user");
+
 const bcrypt = require("bcrypt");
 
 const handleNewUser = async (req, res) => {
@@ -20,9 +14,9 @@ const handleNewUser = async (req, res) => {
         );
 
     // check for duplicate usernames in the db
-    const duplicate = usersDB.users.find(
-        (user) => user.username === credentialsUser
-    );
+    const duplicate = await UserModel.findOne({
+        username: credentialsUser,
+    }).exec();
 
     if (duplicate) {
         // 409 Conflict
@@ -30,20 +24,14 @@ const handleNewUser = async (req, res) => {
     }
 
     try {
-        //encrypt the password
+        // encrypt the password
         const hashedPwd = await bcrypt.hash(credentialsPwd, 10);
-        //store the new user
-        const newUser = {
+        // create and store the new user
+        const newUser = await UserModel.create({
             username: credentialsUser,
             password: hashedPwd,
-            roles: { User: 2001 },
-        };
-        usersDB.setUsers([...usersDB.users, newUser]);
-        // una vez ya actualiza usersDB, ahora sobreescribe toda esa DB por esta nueva
-        await fsPromises.writeFile(
-            path.join(__dirname, "..", "models", "users.json"),
-            JSON.stringify(usersDB.users)
-        );
+            // roles: { User: 2001 }, no ponemos el role predeterminado por que ya definimos el default data en nuestro esquema, gracias a mongoose
+        });
 
         // 201 Created
         res.status(201).json({

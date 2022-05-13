@@ -6,7 +6,7 @@ const verifyRoles = (...allowedRoles) => {
         const result = req.roles
             .map((role) => rolesArray.includes(role))
             .find((values) => values === true);
-        console.log(`aaa`, result);
+
         if (!result) return res.sendStatus(401); // unauthorized
         next();
     };

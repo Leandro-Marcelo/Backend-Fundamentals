@@ -1,14 +1,7 @@
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const { access_token_secret, refresh_token_secret } = require("../config");
-const fsPromises = require("fs").promises;
-const path = require("path");
-const usersDB = {
-    users: require("../models/users.json"),
-    setUsers: function (data) {
-        this.users = data;
-    },
-};
+const UserModel = require("../models/user");
 
 const handleLogin = async (req, res) => {
     const { user: credentialsUser, pwd: credentialsPwd } = req.body;
@@ -21,9 +14,9 @@ const handleLogin = async (req, res) => {
                 .json({ message: "Username and password are required." })
         );
 
-    const foundUser = usersDB.users.find(
-        (user) => user.username === credentialsUser
-    );
+    const foundUser = await UserModel.findOne({
+        username: credentialsUser,
+    }).exec();
 
     //Unauthorized
     if (!foundUser) return res.sendStatus(401);
@@ -49,15 +42,9 @@ const handleLogin = async (req, res) => {
             { expiresIn: "1d" }
         );
         // Saving refreshToken with current user
-        const otherUsers = usersDB.users.filter(
-            (user) => user.username !== foundUser.username
-        );
-        const currentUser = { ...foundUser, refreshToken };
-        usersDB.setUsers([...otherUsers, currentUser]);
-        await fsPromises.writeFile(
-            path.join(__dirname, "..", "models", "users.json"),
-            JSON.stringify(usersDB.users)
-        );
+        foundUser.refreshToken = refreshToken;
+        const result = await foundUser.save();
+
         res.cookie("jwt", refreshToken, {
             httpOnly: true,
             sameSite: "None",

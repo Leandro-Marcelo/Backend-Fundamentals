@@ -1,20 +1,21 @@
-const dotenv = require("dotenv");
-dotenv.config();
-
-/* hace esta configuración para que donde tenga que usar las variables de entorno no tenga que poner proccess.env.PORT process.env .... y mejor solamente pongo config y la wea que quiero */
+require("dotenv").config();
 
 const config = {
+    /* ********************************* Ports *******************************/
     port: process.env.PORT,
-    dbHost: process.env.DB_HOST,
-    dbPort: process.env.DB_PORT,
-    dbUser: process.env.DB_USER,
-    dbPassword: process.env.DB_PASSWORD,
-    dbName: process.env.DB_NAME,
-    secret: process.env.SECRET,
+    port_socket_io: process.env.PORT_SOCKET_IO,
+
     /* ********************************* JWT / Tokens *******************************/
     jwt_secret: process.env.JWT_SECRET,
     access_token_secret: process.env.ACCESS_TOKEN_SECRET,
     refresh_token_secret: process.env.REFRESH_TOKEN_SECRET,
+
+    /* *********************************** MongoDB *******************************/
+    db_username: process.env.DB_USERNAME,
+    db_password: process.env.DB_PASSWORD,
+    db_host: process.env.DD_HOST,
+    db_name: process.env.DB_NAME,
 };
 
+console.log(config);
 module.exports = config;
