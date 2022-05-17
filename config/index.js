@@ -17,5 +17,4 @@ const config = {
     db_name: process.env.DB_NAME,
 };
 
-console.log(config);
 module.exports = config;

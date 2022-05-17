@@ -55,9 +55,12 @@ const deleteEmployee = async (req, res) => {
 
     if (!employee) {
         /*  return res.status(204).json({ la: "la" }); */
-        return res
-            .status(200)
-            .json({ message: `No employee matches ID ${req.body.id}.` });
+        return (
+            res
+                /* si envio un status(204) el cual significa no content, e intento enviar un .json({ }) este no se va a enviar */
+                .status(204)
+                .json({ message: `No employee matches ID ${req.body.id}.` })
+        );
     }
 
     const result = await employee.deleteOne({ _id: req.body.id });
